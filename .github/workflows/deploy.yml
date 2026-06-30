@@ -24,8 +24,13 @@ jobs:
       - name: 构建站点
         run: npx vitepress build docs
 
+      - name: 查看构建产物（调试用）
+        run: ls -la docs/.vitepress/dist/
+
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          publish_dir: docs/.vitepress/dist
+          publish_dir: ./docs/.vitepress/dist
+          publish_branch: gh-pages
+          force_orphan: true
